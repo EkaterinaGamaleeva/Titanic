@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>search</title>
+</head>
+<body>
+<p>Все пассажиры мужского пола</p>
+
+<div align="center" th:each="passenger : ${passengers}">
+    <a
+            th:text="${passenger.getId()+'-'+passenger.isSurvived()+', '+ passenger.getGrade()+', '+passenger.getName()+', '+passenger.getSex()+', '+passenger.getAge()+', '+passenger.getCountSiblingsOrSpousesOnBoard()+', '+passenger.getCountParentsOrChildrenOnBoard()+', '+passenger.getFare()}">passenger</a>
+</div>
+
+<label>Сумма все билетов - </label>
+<td th:text="${fareSum}"></td>
+<label>Количество пассажиров у которых были родственники на борту- </label>
+<td th:text="${counter}"></td>
+<label>Количество выживших пассажиров- </label>
+<td th:text="${survivors}"></td>
+<p></p>
+<a href="/passengers">Вернуться на главную страницу</a>
+</body>
+</html>

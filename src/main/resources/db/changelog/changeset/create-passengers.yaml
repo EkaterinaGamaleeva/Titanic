@@ -1,0 +1,56 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-passengers1.0 #текстовый идентификатор (Обязателен)
+      author: Ekaterina # автор (Обязателен)
+      changes:
+        - createTable: # создаем новую таблицу
+            tableName: passengers
+            columns: # объявления колонок
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: age
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: count_parents_or_children_on_board
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: count_siblings_or_spouses_on_board
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                 name: fare
+                 type: integer
+                 constraints:
+                   nullable: false
+              - column:
+                 name: grade
+                 type: varchar(255)
+                 constraints:
+                   nullable: false
+              - column:
+                 name: sex
+                 type: varchar(100)
+                 constraints:
+                   nullable: false
+              - column:
+                 name: survived
+                 type: boolean
+                 constraints:
+                   nullable: false
+                   #             check: (grade::text = ANY (ARRAY['FIRST_GRADE'::character varying, 'SECOND_GRADE'::character varying, 'THIRD_GRADE'::character varying]::text[]))

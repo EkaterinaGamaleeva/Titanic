@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>filterForms</title>
+
+</head>
+<body>
+<p>Фильтр по одному параметру</p>
+<form th:method="GET"  th:object="${filter1}" th:action="@{/passengers/filter1}">
+    <label>Выберите фильтр</label>
+    <select class="form-control1" name="type" id="type">
+        <option th:each="designation : ${designations}"
+                th:value="${designation}"
+                th:selected="${designation}"
+                th:text="${designation}">
+        </option>
+    </select>
+    <input type="submit" value="Отсортировать!"/>
+</form>
+<p></p>
+<p>Фильтр по двум параметрам</p>
+<form th:method="GET"  th:object="${filter2}" th:action="@{/passengers/filter2}">
+    <label>Выберите фильтр</label>
+    <select class="form-control2" name="type1" id="type1">
+        <option th:each="designation : ${designations}"
+                th:value="${designation}"
+                th:selected="${designation}"
+                th:text="${designation}">
+        </option>
+    </select>
+    <select class="form-control2" name="type2" id="type2">
+        <option th:each="designation : ${designations}"
+                th:value="${designation}"
+                th:selected="${designation}"
+                th:text="${designation}">
+        </option>
+    </select>
+    <input type="submit" value="Отсортировать!"/>
+</form>
+<p></p>
+<p></p>
+<p>Фильтр по трем параметрам</p>
+<form th:method="GET"  th:object="${filter3}" th:action="@{/passengers/filter3}">
+    <label>Выберите фильтр</label>
+    <select class="form-control3" name="type1" id="type1">
+        <option th:each="designation : ${designations}"
+                th:value="${designation}"
+                th:selected="${designation}"
+                th:text="${designation}">
+        </option>
+    </select>
+    <select class="form-control3" name="type2" id="type2">
+        <option th:each="designation : ${designations}"
+                th:value="${designation}"
+                th:selected="${designation}"
+                th:text="${designation}">
+        </option>
+    </select>
+    <select class="form-control3" name="type3" id="type3">
+        <option th:each="designation : ${designations}"
+                th:value="${designation}"
+                th:selected="${designation}"
+                th:text="${designation}">
+        </option>
+    </select>
+    <input type="submit" value="Отсортировать!"/>
+</form>
+<p></p>
+
+<p>Фильтр по трем параметрам</p>
+<form th:method="GET"  th:object="${filter4}" th:action="@{/passengers/filter4}">
+    <label>Выберите фильтр</label>
+    <select class="form-control4" name="type1" id="type1">
+        <option th:each="designation : ${designations}"
+                th:value="${designation}"
+                th:selected="${designation}"
+                th:text="${designation}">
+        </option>
+    </select>
+    <select class="form-control4" name="type2" id="type2">
+        <option th:each="designation : ${designations}"
+                th:value="${designation}"
+                th:selected="${designation}"
+                th:text="${designation}">
+        </option>
+    </select>
+    <select class="form-control4" name="type3" id="type3">
+        <option th:each="designation : ${designations}"
+                th:value="${designation}"
+                th:selected="${designation}"
+                th:text="${designation}">
+        </option>
+    </select>
+    <select class="form-control4" name="type4" id="type4">
+        <option th:each="designation : ${designations}"
+                th:value="${designation}"
+                th:selected="${designation}"
+                th:text="${designation}">
+        </option>
+    </select>
+    <input type="submit" value="Отсортировать!"/>
+</form>
+<p></p>
+<label>Сумма все билетов - </label>
+<td th:text="${fareSum}"></td>
+<label>Количество пассажиров у которых были родственники на борту- </label>
+<td th:text="${counter}"></td>
+<label>Количество выживших пассажиров- </label>
+<td th:text="${survivors}"></td>
+<p></p>
+<a href="/passengers">Вернуться на главную страницу</a>
+</body>

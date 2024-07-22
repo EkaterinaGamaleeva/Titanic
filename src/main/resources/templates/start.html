@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>start</title>
+</head>
+<p></p>
+<p align="left">
+<a href="passengers/survivors" class="button-link"><input type="submit" value="Посмотреть всех выживших пассажиров!"/></a>
+</p>
+<p align="left">
+<a href="passengers/age" class="button-link"><input type="submit" value="Посмотреть всех совершеннолетних пассажиров(16+)!"/></a>
+</p>
+<p align="left">
+<a href="passengers/sex" class="button-link"><input type="submit" value="Посмотреть всех пассажиров мужского пола"/></a>
+</p>
+<p align="left">
+<a href="passengers/NoParentsToBoard" class="button-link"><input type="submit" value="Посмотреть всех пассажиров у которых нет родственников на борту"/></a>
+</p>
+<p align="left">
+<a href="passengers/filterForms" class="button-link"><input type="submit" value="Создай свой собственный фильтр"/></a>
+</p>
+<p></p>
+
+<p align="center"> Поиск пассажира по имени</p>
+<form align="center" th:method="GET" th:action="@{/passengers/search}">
+    <input type="text" id="name" name="name"/>
+    <br/>
+    <input type="submit" value="Найти пассажира!"/>
+</form>
+
+<p></p>
+<div align="center" th:each="passenger : ${passengers}">
+    <a
+            th:text="${passenger.getId()+'-'+passenger.isSurvived()+', '+ passenger.getGrade()+', '+passenger.getName()+', '+passenger.getSex()+', '+passenger.getAge()+', '+passenger.getCountSiblingsOrSpousesOnBoard()+', '+passenger.getCountParentsOrChildrenOnBoard()+', '+passenger.getFare()}">passenger</a>
+</div>
+
+<p>Указание лимита</p>
+<form th:method="GET" th:action="@{/passengers/limit}">
+    <label for="limit">Укажити количество пассажиров</label>
+    <input type="text" id="limit" name="limit"/>
+    <br/>
+    <input type="submit" value="Посмотреть пассажиров!"/>
+</form>
+
+<p></p>
+
+<p></p>Сортировка</p>
+ <form th:method="GET"  th:object="${sort}" th:action="@{/passengers/sort}">
+     <label>Параметр сортировки</label>
+     <select class="form-control" name="type" id="type">
+         <option th:each="type : ${types}"
+                 th:value="${type}"
+                 th:selected="${type}"
+                 th:text="${type}">
+         </option>
+     </select>
+     <label>Параметр сортировки</label>
+     <select class="form-control" name="sort" id="sort">
+         <option th:each="designation : ${designations}"
+                 th:value="${designation}"
+                 th:selected="${designation}"
+                 th:text="${designation}">
+         </option>
+     </select>
+        <input type="submit" value="Отсортировать!"/>
+</form>
+
+<p></p>
+
+<p>Сортировка с лимитом</p>
+<form th:method="GET"  th:object="${sortAndLimit}" th:action="@{/passengers/sortAndLimit}">
+    <label>Параметр сортировки</label>
+    <select class="form-control" name="type" id="type">
+        <option th:each="type : ${types}"
+                th:value="${type}"
+                th:selected="${type}"
+                th:text="${type}">
+        </option>
+    </select>
+    <label>Параметр сортировки</label>
+    <select class="form-control" name="sort" id="sort">
+        <option th:each="designation : ${designations}"
+                th:value="${designation}"
+                th:selected="${designation}"
+                th:text="${designation}">
+        </option>
+    </select>
+    <a></a>
+    <label for="limit">Укажити сколько пассажиров показать</label>
+    <input type="text" id="limit" name="limit"/>
+    <br/>
+    <input type="submit" value="Отсортировать!"/>
+</form>
+
+<p></p>
+
+<p>Выдача страниц</p>
+<form th:method="GET" th:action="@{/passengers/page}">
+    <label for="page">Укажити количесво страниц</label>
+    <input type="text" id="page" name="page"/>
+    <br/>
+    <label for="size">Укажити размер</label>
+    <input type="text" id="size" name="size"/>
+    <br/>
+    <input type="submit" value="Выдать пассажиров!"/>
+</form>
+
+<p></p>
+
+<p>Пагинация</p>
+<p></p>
+<form th:method="GET" th:action="@{/passengers/pagination}">
+    <label for="page">Укажити количесво страниц</label>
+    <input type="text" id="page" name="page"/>
+    <br/>
+    <label for="size">Укажити размер</label>
+    <input type="text" id="size" name="size"/>
+    <br/>
+    <label>Параметр сортировки</label>
+    <select class="form-control" name="type" id="type">
+        <option th:each="type : ${types}"
+                th:value="${type}"
+                th:selected="${type}"
+                th:text="${type}">
+        </option>
+    </select>
+    <label>Параметр сортировки</label>
+    <select class="form-control" name="sort" id="sort">
+        <option th:each="designation : ${designations}"
+                th:value="${designation}"
+                th:selected="${designation}"
+                th:text="${designation}">
+        </option>
+    </select>
+    <input type="submit" value="Выдать!"/>
+</form>
+<p></p>
+<p></p>
+<label>Сумма все билетов - </label>
+<td th:text="${fareSum}"></td>
+<label>Количество пассажиров у которых были родственники на борту- </label>
+<td th:text="${counter}"></td>
+<label>Количество выживших пассажиров- </label>
+<td th:text="${survivors}"></td>
+</body>
+</html>
